@@ -4,28 +4,38 @@
 /**
  * Generates Android APKs
  *
+ * To generate a keystore:
+ * $ keytool -genkey -v -keystore "{KEYSTORE_NAME}" -alias "{KEYSTORE_ALIAS_NAME}" -keyalg RSA -keysize 2048 -validity 10000
+ *
  * @link http://stackoverflow.com/a/20792218/1189971
  * @link link: http://developer.android.com/tools/publishing/app-signing.html#signing-manually
  */
 
-/**
- * To generate a keystore:
- * $ keytool -genkey -v -keystore "{KEYSTORE_NAME}" -alias "{KEYSTORE_ALIAS_NAME}" -keyalg RSA -keysize 2048 -validity 10000
- */
 
 
-var exec    = require('child_process').exec;
-var printf  = require('util').format;
-
-
+/* ==========================================================================
+ * Config settings
+ * ========================================================================== */
 
 var IS_DEBUG      = false;                // Flag - Whether we want a debug or release version
 
 var keystoreAlias = '';                   // Alias name used for the keystore (CHANGE THIS)
 var keystorePath  = 'keystore.keystore';  // Path to the key store
 
-var appFileName = '',                                 // the file name for the app
-    buildName,                                        // name of the build file
+var appFileName   = '';                   // the file name for the app
+
+
+
+/* ==========================================================================
+ * Do NOT modify the code below
+ * ========================================================================== */
+
+var exec    = require('child_process').exec;
+var printf  = require('util').format;
+
+
+
+var buildName,                                        // name of the build file
     buildPath   = '../platforms/android/ant-build/',  // path where unsigned app is built by Phonegap/Cordova
     releaseName,                                      // name of the build file
     releasePath = '../builds/';                       // path to store builds, for release
