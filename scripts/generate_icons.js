@@ -12,10 +12,10 @@ var exec    = require('child_process').exec;
 var printf  = require('util').format;
 
 
-var icon      = '../www/icon.png';  // path to the original icon to convert
-var iconPath  = '../www/res/icon/'; // path to store the converted icons
+var icon    = '../www/icon.png';  // path to the original icon to convert
+var genPath = '../www/res/icon/'; // path to store the generated images
 
-var conversionList  = {             // list of icon sizes to create
+var conversionList  = {           // list of icon sizes to create
   android: [
     {
       size: '36x36',
@@ -94,20 +94,20 @@ var conversionList  = {             // list of icon sizes to create
   ]
 };
 
-var background  = 'none';           // background colour (set as 'none' for transparent)
+var background  = 'none';         // background colour (set as 'none' for transparent)
 
 
 // change to the directory where this script lives
 //cd ${0%/*}
 
-// Generate icons
+// Generate images
 conversionList.forEach(function(conversions, os){
   console.log('Generating icons for "' + os + '"...');
 
-  var iconOSPath  = iconPath + os + '/';  // the path to the OS specific icon directory
+  var imageOSPath  = genPath + os + '/';  // the path to the OS specific icon directory
 
   // create the icon directory
-  exec(printf('mkdir -p "%s"', iconOSPath));
+  exec(printf('mkdir -p "%s"', imageOSPath));
 
   // loop through and generate each icon
   conversions.forEach(function(conversion){
@@ -119,7 +119,7 @@ conversionList.forEach(function(conversions, os){
         background,
         icon,
         conversion.size,
-        iconOSPath + conversion.name
+          imageOSPath + conversion.name
       ),
       function(error, stdout, stderr){
         if(error !== null){
