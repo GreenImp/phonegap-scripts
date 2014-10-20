@@ -47,8 +47,7 @@ var printf  = require('util').format;
 
 
 
-
-var IS_DEBUG    = (process.argv[2] == 'debug') || false,    // Flag - Whether we want a debug or release version
+var IS_DEBUG    = !(process.argv[2] == '--release'),        // Flag - Whether we want a debug or release version
     buildName   = appFileName + '.app',                     // name of the build file
     buildPath   = rootPath + 'platforms/ios/build/device/', // path where unsigned app is built by Phonegap/Cordova
     releaseName,                                            // name of the build file
