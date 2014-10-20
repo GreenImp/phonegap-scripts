@@ -42,12 +42,9 @@ var buildName,                                                // name of the bui
     releasePath = rootPath + 'builds/';                       // path to store builds, for release
 
 
-
 if(!IS_DEBUG){
   buildName     = appFileName + '-release-unsigned.apk';
   releaseName   = appFileName + '-release-signed.apk';
-
-  buildPathName = buildPath + buildName;
 }else{
   buildName = appFileName + '-debug.apk';
   releaseName = appFileName + '-debug.apk';
