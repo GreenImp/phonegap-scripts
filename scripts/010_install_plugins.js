@@ -3,6 +3,11 @@
 var sys = require('sys');
 var exec = require('child_process').exec;
 
+/**
+ * List of plugins to install
+ *
+ * @type {Array}
+ */
 var plugins = [
   "org.apache.cordova.camera",
   "org.apache.cordova.device",
@@ -25,7 +30,7 @@ var plugins = [
  * @param stderr
  */
 function puts(error, stdout, stderr){
-  sys.puts(stdout)
+  sys.puts(stdout);
 }
 
 
