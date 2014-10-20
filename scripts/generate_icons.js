@@ -100,14 +100,16 @@ var background  = 'none';           // background colour (set as 'none' for tran
 // change to the directory where this script lives
 //cd ${0%/*}
 
-// create the icon directories
-exec('mkdir -p "../www/res/icon/android"');
-exec('mkdir -p "../www/res/icon/ios"');
-
 // Generate icons
 conversionList.forEach(function(conversions, os){
   console.log('Generating icons for "' + os + '"...');
 
+  var iconOSPath  = iconPath + os + '/';  // the path to the OS specific icon directory
+
+  // create the icon directory
+  exec(printf('mkdir -p "%s"', iconOSPath));
+
+  // loop through and generate each icon
   conversions.forEach(function(conversion){
     console.log('Generating ' + conversion.name + ' (' + conversion.size + ')');
 
@@ -117,7 +119,7 @@ conversionList.forEach(function(conversions, os){
         background,
         icon,
         conversion.size,
-        iconPath + os + '/' + conversion.name
+        iconOSPath + conversion.name
       ),
       function(error, stdout, stderr){
         if(error !== null){
