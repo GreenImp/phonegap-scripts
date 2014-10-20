@@ -23,6 +23,7 @@ var keystoreAlias = '';                   // Alias name used for the keystore (C
 var keystorePath  = 'keystore.keystore';  // Path to the key store
 
 var appFileName   = '';                   // the file name for the app
+var rootPath      = '../';                // path from this file to the app root (folder hat contains the `www` directory)
 
 
 
@@ -35,10 +36,10 @@ var printf  = require('util').format;
 
 
 
-var buildName,                                        // name of the build file
-    buildPath   = '../platforms/android/ant-build/',  // path where unsigned app is built by Phonegap/Cordova
-    releaseName,                                      // name of the build file
-    releasePath = '../builds/';                       // path to store builds, for release
+var buildName,                                                // name of the build file
+    buildPath   = rootPath + 'platforms/android/ant-build/',  // path where unsigned app is built by Phonegap/Cordova
+    releaseName,                                              // name of the build file
+    releasePath = rootPath + 'builds/';                       // path to store builds, for release
 
 
 
@@ -88,7 +89,7 @@ exec('phonegap -v', function(error, stdout, stderr){
     if(!IS_DEBUG){
       // create release version
       console.log('Converting to release APK');
-      exec('../platforms/android/cordova/build --release');
+      exec(rootPath + 'platforms/android/cordova/build --release');
     }
   }else{
     // command failed or Phonegap not installed - try cordova
