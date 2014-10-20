@@ -16,8 +16,6 @@
  * Config settings
  * ========================================================================== */
 
-var IS_DEBUG              = false;    // Flag - Whether we want a debug or release version
-
 var signingCertificate    = '';       // The name of the certificate to use (this should match a certificate in your Keychain - it can be a partial match)
 var provisioningProfiles  = {         // path to the provisioning profiles (`debug` and `release`)
   debug: 'profile.mobileprovision',
@@ -49,7 +47,9 @@ var printf  = require('util').format;
 
 
 
-var buildName   = appFileName + '.app',                     // name of the build file
+
+var IS_DEBUG    = (process.argv[2] == 'debug') || false,    // Flag - Whether we want a debug or release version
+    buildName   = appFileName + '.app',                     // name of the build file
     buildPath   = rootPath + 'platforms/ios/build/device/', // path where unsigned app is built by Phonegap/Cordova
     releaseName,                                            // name of the build file
     releasePath = rootPath + 'builds/',                     // path to store builds, for release

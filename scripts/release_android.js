@@ -17,13 +17,11 @@
  * Config settings
  * ========================================================================== */
 
-var IS_DEBUG      = false;                // Flag - Whether we want a debug or release version
+var keystoreAlias = '';                             // Alias name used for the keystore (CHANGE THIS)
+var keystorePath  = 'keystore.keystore';            // Path to the key store
 
-var keystoreAlias = '';                   // Alias name used for the keystore (CHANGE THIS)
-var keystorePath  = 'keystore.keystore';  // Path to the key store
-
-var appFileName   = '';                   // the file name for the app
-var rootPath      = '../';                // path from this file to the app root (folder hat contains the `www` directory)
+var appFileName   = '';                             // the file name for the app
+var rootPath      = '../';                          // path from this file to the app root (folder hat contains the `www` directory)
 
 
 
@@ -36,7 +34,8 @@ var printf  = require('util').format;
 
 
 
-var buildName,                                                // name of the build file
+var IS_DEBUG    = (process.argv[2] == 'debug') || false,      // Flag - Whether we want a debug or release version
+    buildName,                                                // name of the build file
     buildPath   = rootPath + 'platforms/android/ant-build/',  // path where unsigned app is built by Phonegap/Cordova
     releaseName,                                              // name of the build file
     releasePath = rootPath + 'builds/';                       // path to store builds, for release
