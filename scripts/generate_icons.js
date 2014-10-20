@@ -119,7 +119,7 @@ conversionList.forEach(function(conversions, os){
         background,
         icon,
         conversion.size,
-          imageOSPath + conversion.name
+        imageOSPath + conversion.name
       ),
       function(error, stdout, stderr){
         if(error !== null){
